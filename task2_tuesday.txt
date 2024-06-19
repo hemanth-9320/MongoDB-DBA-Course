@@ -1,3 +1,5 @@
+12 Questions
+
 1) Find products that do not have "red" as a color and are priced below 800.
 
 db.products1.find({
