@@ -7,7 +7,7 @@ import org.bson.Document;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 
-public class EmployeeManagement {
+public class TASK1_SAT {
     public static void main(String[] args) {
         MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
         MongoDatabase database = mongoClient.getDatabase("Company");
@@ -65,6 +65,3 @@ public class EmployeeManagement {
         mongoClient.close();
     }
 }
-
-
-
