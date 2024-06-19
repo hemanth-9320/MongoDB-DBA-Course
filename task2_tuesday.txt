@@ -52,7 +52,27 @@ db.products1.find({
   "spec.storage": { $gte: 128 }
 })
 
-8) Print the name and date of product whose ram is neither 4 nor the product price is
+8) Print the name , screen size and color of products whose color has no gold in it.
+
+db.products1.find({
+  color: { $nin: ["gold"] }
+}, {
+  name: 1,
+  "spec.screen": 1,
+  color: 1
+})
+
+9) Find products that have either "white" or "black" as a color option and are priced below 800.
+
+db.products1.find({
+  $or: [
+    { color: "white" },
+    { color: "black" }
+  ],
+  price: { $lt: 800 }
+})
+
+10) Print the name and date of product whose ram is neither 4 nor the product price is
 
 db.products1.find({
   $and: [
@@ -64,7 +84,7 @@ db.products1.find({
   releaseDate: 1
 })
 
-9) Print the names of products whose screen is either greater than 7 or color is white
+11) Print the names of products whose screen is either greater than 7 or color is white
 
 db.products1.find({
   $or: [
@@ -73,26 +93,6 @@ db.products1.find({
   ]
 }, {
   name: 1
-})
-
-10) Print the name , screen size and color of products whose color has no gold in it.
-
-db.products1.find({
-  color: { $nin: ["gold"] }
-}, {
-  name: 1,
-  "spec.screen": 1,
-  color: 1
-})
-
-11) Find products that have either "white" or "black" as a color option and are priced below 800.
-
-db.products1.find({
-  $or: [
-    { color: "white" },
-    { color: "black" }
-  ],
-  price: { $lt: 800 }
 })
 
 12) Find products that have both a RAM size greater than 8GB and a CPU speed less than 2 GHz, or do not have a storage option of 256GB.
