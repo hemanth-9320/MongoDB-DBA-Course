@@ -1,0 +1,110 @@
+1) Find products that do not have "red" as a color and are priced below 800.
+
+db.products1.find({
+  color: { $ne: "red" },
+  price: { $lt: 800 }
+})
+
+2) Find name if the storage is 2048.
+
+db.products1.find({
+  "spec.storage": 2048
+}, {
+  name: 1
+})
+
+3) Find products released after January 1, 2023, and have a price greater than or equal to 1000.
+
+db.products1.find({
+  releaseDate: { $gt: ISODate("2023-01-01") },
+  price: { $gte: 1000 }
+})
+
+4) Find products where either the category is "electronics" or the price is less than 500.
+
+db.products1.find({
+  $or: [
+    { category: "electronics" },
+    { price: { $lt: 500 } }
+  ]
+})
+
+5) Price should be grater than either 799 or ram is greater than 12
+
+db.products1.find({
+  $or: [
+    { price: { $gt: 799 } },
+    { "spec.ram": { $gt: 12 } }
+  ]
+})
+
+6) Find products that do not have "white" as a color and are priced below 800
+
+db.products1.find({
+  color: { $nin: ["white"] },
+  price: { $lt: 800 }
+})
+
+7) Select products with either blue colour and storage not less than 128
+
+db.products1.find({
+  color: "blue",
+  "spec.storage": { $gte: 128 }
+})
+
+8) Print the name and date of product whose ram is neither 4 nor the product price is
+
+db.products1.find({
+  $and: [
+    { "spec.ram": { $ne: 4 } },
+    { price: { $gte: 799 } }
+  ]
+}, {
+  name: 1,
+  releaseDate: 1
+})
+
+9) Print the names of products whose screen is either greater than 7 or color is white
+
+db.products1.find({
+  $or: [
+    { "spec.screen": { $gt: 7 } },
+    { color: "white" }
+  ]
+}, {
+  name: 1
+})
+
+10) Print the name , screen size and color of products whose color has no gold in it.
+
+db.products1.find({
+  color: { $nin: ["gold"] }
+}, {
+  name: 1,
+  "spec.screen": 1,
+  color: 1
+})
+
+11) Find products that have either "white" or "black" as a color option and are priced below 800.
+
+db.products1.find({
+  $or: [
+    { color: "white" },
+    { color: "black" }
+  ],
+  price: { $lt: 800 }
+})
+
+12) Find products that have both a RAM size greater than 8GB and a CPU speed less than 2 GHz, or do not have a storage option of 256GB.
+
+db.products1.find({
+  $or: [
+    {
+      $and: [
+        { "spec.ram": { $gt: 8 } },
+        { "spec.cpu": { $lt: 2 } }
+      ]
+    },
+    { "spec.storage": { $nin: [256] } }
+  ]
+})
